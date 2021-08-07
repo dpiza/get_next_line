@@ -6,7 +6,7 @@
 /*   By: dpiza <dpiza@student.42sp.org.br>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/15 14:26:46 by dpiza             #+#    #+#             */
-/*   Updated: 2021/08/07 14:10:41 by dpiza            ###   ########.fr       */
+/*   Updated: 2021/08/07 14:16:58 by dpiza            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,18 +50,13 @@ char	*ft_return_line(char **save)
 		temp = ft_substr(*save, n + 1, ft_strlen(*save));
 		free (*save);
 		*save = temp;
-		if (**save == '\0')
-		{
-			free (*save);
-			*save = NULL;
-		}
+		if (**save != '\0')
+			return (ret);
 	}
 	else
-	{
 		ret = ft_strdup(*save);
-		free (*save);
-		*save = NULL;
-	}
+	free (*save);
+	*save = NULL;
 	return (ret);
 }
 
