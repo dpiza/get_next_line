@@ -6,7 +6,7 @@
 /*   By: dpiza <dpiza@student.42sp.org.br>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/06 14:17:58 by dpiza             #+#    #+#             */
-/*   Updated: 2021/08/07 15:09:46 by dpiza            ###   ########.fr       */
+/*   Updated: 2021/08/07 17:34:12 by dpiza            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ int	main(void)
 {
 	char *buffer;
 	int fd;
-	int n;
+	// int n;
 
 	// fd = open("files/bin", O_RDONLY);
 	// fd = -2147483647;
@@ -51,8 +51,8 @@ int	main(void)
 	// fd = open("files/big_line_with_nl", O_RDONLY);
 	fd = open("files/multiple_nlx5", O_RDONLY);
 	// fd = open("files/nl", O_RDONLY);
-	n = 10;
-	while (n > 0)
+	// n = 1;
+	while (true)
 	{
 		buffer = get_next_line(fd);
 		if (buffer)
@@ -60,9 +60,12 @@ int	main(void)
 			ft_putstr(buffer);
 			free (buffer);
 		}
-		n--;
+		else
+			break ;
+		// n--;
 	}
 	ft_putchar('\n');
+	close(fd);
 
 
 	return (0);
