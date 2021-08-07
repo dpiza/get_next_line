@@ -1,83 +1,92 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line_bonus.c                              :+:      :+:    :+:   */
+/*   get_next_line_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dpiza <dpiza@student.42sp.org.br>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/06/15 14:26:46 by dpiza             #+#    #+#             */
-/*   Updated: 2021/08/07 09:15:07 by dpiza            ###   ########.fr       */
+/*   Created: 2021/06/15 14:28:28 by dpiza             #+#    #+#             */
+/*   Updated: 2021/08/06 14:12:29 by dpiza            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-char	*ft_line_break(char *save)
+size_t	ft_strlen(const char *s)
 {
-	int			i;
-	char		*ret;
+	size_t	i;
 
 	i = 0;
-	ret = ft_strdup(save);
-	while (ret[i] != '\n')
+	while (*s++)
 		i++;
-	ret[i + 1] = '\0';
-	return (ret);
+	return (i);
 }
 
-char	*ft_return_line(char **save)
+size_t	ft_strlcpy(char *dst, const char *src, size_t size)
 {
-	char		*ret;
-	char		*temp;
+	int	i;
 
-	if (!*save || **save == '\0')
-		return (NULL);
-	temp = ft_strchr(*save, '\n');
-	if (temp)
+	if (!dst || !src)
+		return (0);
+	i = ft_strlen(src);
+	if (size == 0)
+		return (i);
+	while (*src && size > 0)
 	{
-		ret = ft_line_break(*save);
-		free (*save);
-		*save = ft_strdup(temp);
-		if (**save == '\0')
-		{
-			free (*save);
-			*save = NULL;
-		}
+		*dst++ = *src++;
+		size--;
 	}
-	else
-	{
-		ret = ft_strdup(*save);
-		free (*save);
-		*save = NULL;
-	}
-	return (ret);
+	if (size == 0)
+		dst--;
+	*dst = '\0';
+	return (i);
 }
 
-char	*get_next_line(int fd)
+char	*ft_strchr(const char *s, int c)
 {
-	char		*temp;
-	char		*buffer;
-	static char	*save[OPEN_MAX];
-	int			ret;
+	size_t	is;
 
-	if (fd < 0 || BUFFER_SIZE < 1 || fd > OPEN_MAX)
+	is = ft_strlen(s);
+	while (*s != (char)c && is-- > 0)
+		s++;
+	if (!*s && c)
 		return (NULL);
-	buffer = (char *)malloc((1 + BUFFER_SIZE) * sizeof(char));
-	if (!buffer)
+	s++;
+	return ((char *)s);
+}
+
+char	*ft_strdup(const char *s)
+{
+	char	*pret;
+
+	pret = malloc((ft_strlen(s) + 1) * sizeof(char));
+	if (!pret)
 		return (NULL);
-	ret = read(fd, buffer, BUFFER_SIZE);
-	while (ret > 0)
+	ft_strlcpy(pret, s, (ft_strlen(s) + 1));
+	return (pret);
+}
+
+char	*ft_strjoin(char const *s1, char const *s2)
+{
+	size_t	is1;
+	size_t	is2;
+	char	*dest;
+	char	*tdest;
+
+	if (!s1 || !s2)
+		return (NULL);
+	is1 = ft_strlen(s1);
+	is2 = ft_strlen(s2);
+	dest = (char *)malloc((is1 + is2 + 1) * sizeof(char));
+	if (!dest)
 	{
-		buffer[ret] = '\0';
-		if (save[fd] == NULL)
-			save[fd] = ft_strdup("");
-		temp = ft_strjoin(save[fd], buffer);
-		free (save[fd]);
-		save[fd] = temp;
-		if (ft_strchr(save[fd], '\n'))
-			break ;
-		ret = read(fd, buffer, BUFFER_SIZE);
+		return (NULL);
 	}
-	free (buffer);
-	return (ft_return_line(&save[fd]));
+	tdest = dest;
+	while (*s1)
+		*tdest++ = *s1++;
+	while (*s2)
+		*tdest++ = *s2++;
+	*tdest = '\0';
+	return (dest);
 }
