@@ -6,7 +6,7 @@
 /*   By: dpiza <dpiza@student.42sp.org.br>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/15 14:28:28 by dpiza             #+#    #+#             */
-/*   Updated: 2021/08/07 13:48:40 by dpiza            ###   ########.fr       */
+/*   Updated: 2021/08/07 14:04:39 by dpiza            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,6 @@ char	*ft_strchr(const char *s, int c)
 		s++;
 	if (!*s && c)
 		return (NULL);
-	s++;
 	return ((char *)s);
 }
 

@@ -6,7 +6,7 @@
 /*   By: dpiza <dpiza@student.42sp.org.br>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/06 14:17:58 by dpiza             #+#    #+#             */
-/*   Updated: 2021/08/07 13:54:16 by dpiza            ###   ########.fr       */
+/*   Updated: 2021/08/07 14:00:38 by dpiza            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,8 @@ int	main(void)
 	// fd = open("files/bin", O_RDONLY);
 	// fd = -2147483647;
 	// fd = open("files/nl", O_RDONLY);
-	// fd = open("files/41_no_nl", O_RDONLY);
-	fd = open("files/41_with_nl", O_RDONLY);
+	fd = open("files/41_no_nl", O_RDONLY);
+	// fd = open("files/41_with_nl", O_RDONLY);
 	// fd = open("files/42_no_nl", O_RDONLY);
 	// fd = open("files/42_with_nl", O_RDONLY);
 	// fd = open("files/alternate_line_nl_no_nl", O_RDONLY);

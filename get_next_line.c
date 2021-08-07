@@ -6,7 +6,7 @@
 /*   By: dpiza <dpiza@student.42sp.org.br>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/15 14:26:46 by dpiza             #+#    #+#             */
-/*   Updated: 2021/08/07 13:56:44 by dpiza            ###   ########.fr       */
+/*   Updated: 2021/08/07 14:04:33 by dpiza            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ char	*ft_return_line(char **save)
 	if (n > 0)
 	{
 		ret = ft_line_break(*save);
-		temp = ft_substr(*save, n, ft_strlen(*save));
+		temp = ft_substr(*save, n + 1, ft_strlen(*save));
 		free (*save);
 		*save = temp;
 		if (**save == '\0')
