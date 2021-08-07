@@ -6,11 +6,21 @@
 /*   By: dpiza <dpiza@student.42sp.org.br>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/15 14:26:46 by dpiza             #+#    #+#             */
-/*   Updated: 2021/08/06 13:48:09 by dpiza            ###   ########.fr       */
+/*   Updated: 2021/08/07 13:56:44 by dpiza            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
+
+size_t	ft_strlen(const char *s)
+{
+	size_t	i;
+
+	i = 0;
+	while (*s++)
+		i++;
+	return (i);
+}
 
 char	*ft_line_break(char *save)
 {
@@ -29,15 +39,18 @@ char	*ft_return_line(char **save)
 {
 	char		*ret;
 	char		*temp;
+	int			n;
 
 	if (!*save || **save == '\0')
 		return (NULL);
-	temp = ft_strchr(*save, '\n');
-	if (temp)
+	n = 0;
+	n = (int)((ft_strchr(*save, '\n')) - *save);
+	if (n > 0)
 	{
 		ret = ft_line_break(*save);
+		temp = ft_substr(*save, n, ft_strlen(*save));
 		free (*save);
-		*save = ft_strdup(temp);
+		*save = temp;
 		if (**save == '\0')
 		{
 			free (*save);
