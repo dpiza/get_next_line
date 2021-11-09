@@ -6,7 +6,7 @@
 /*   By: dpiza <dpiza@student.42sp.org.br>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/15 14:26:46 by dpiza             #+#    #+#             */
-/*   Updated: 2021/08/07 14:58:41 by dpiza            ###   ########.fr       */
+/*   Updated: 2021/11/09 20:47:36 by dpiza            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,19 +20,6 @@ size_t	ft_strlen(const char *s)
 	while (*s++)
 		i++;
 	return (i);
-}
-
-char	*ft_line_break(char *save)
-{
-	int			i;
-	char		*ret;
-
-	i = 0;
-	ret = ft_strdup(save);
-	while (ret[i] != '\n')
-		i++;
-	ret[i + 1] = '\0';
-	return (ret);
 }
 
 char	*ft_return_line(char **save)
